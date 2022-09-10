@@ -1,8 +1,0 @@
----
-users:
-  - name: Dan
-    username: danny 
-    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/gkiVPfEw5nnlajiZn1TVl45fINzGC+3hWiE6POkOV4iHrPcqr2UA8fA0Q+xLQMuKYoWvBLdu2EY3IMgRZwv7/cILzKgm55WZ/4HpCOHv2v1SnVBVyQ0UfsDEQOKvCk7lnIuBO2FTBxq7qwHEMjI17GRJKiIxVFqrXqr/wyepRvrkxJeohiEomS34Ts4QCzJKEm+9EsH7dtwp1jnDtSs4HiZmeTb4lgdy2VE5RRx1oKAMhbRw8lDshT8EGI3g9C/nQQ2/blFUYUfr6XXrJVqCkWZDWYVTNkM0MX9eMP5Y+Oi92k+ib3b8XsOP75UgreHDbLv1r+HbnKJnhWb4EwkT lbitc-west-test-KP
-  - name: Pawi
-    username: papawillie
-    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/gkiVPfEw5nnlajiZn1TVl45fINzGC+3hWiE6POkOV4iHrPcqr2UA8fA0Q+xLQMuKYoWvBLdu2EY3IMgRZwv7/cILzKgm55WZ/4HpCOHv2v1SnVBVyQ0UfsDEQOKvCk7lnIuBO2FTBxq7qwHEMjI17GRJKiIxVFqrXqr/wyepRvrkxJeohiEomS34Ts4QCzJKEm+9EsH7dtwp1jnDtSs4HiZmeTb4lgdy2VE5RRx1oKAMhbRw8lDshT8EGI3g9C/nQQ2/blFUYUfr6XXrJVqCkWZDWYVTNkM0MX9eMP5Y+Oi92k+ib3b8XsOP75UgreHDbLv1r+HbnKJnhWb4EwkT lbitc-west-test-KP
