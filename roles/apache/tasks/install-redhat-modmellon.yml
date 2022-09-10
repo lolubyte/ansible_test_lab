@@ -1,0 +1,17 @@
+---
+
+- name: Install apache mod_mellon
+  become: yes
+  yum:
+    name: mod_auth_mellon openssl lasso
+    state: latest
+  notify: "restart apache"
+
+- name: Create /etc/httpd/saml2 Directory
+  become: yes
+  file:
+    path: "/etc/httpd/saml2"
+    mode: 0755
+    state: directory
+    owner: root
+    group: root

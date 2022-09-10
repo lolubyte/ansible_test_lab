@@ -1,0 +1,41 @@
+---
+
+#- name: Install roles from Ansible Galaxy
+#  command: ansible-galaxy collection install community.general
+
+- name: Use nmcli to obtain the active connection interface
+  #become: yes
+  shell: |
+    nmcli -g name,type connection show --active|awk -F: '/ethernet/{ print $1 }'
+  register: my_conn
+  when: ansible_os_family == "RedHat"
+
+  #- name: Configure the DNS servers
+  #  become: true
+  #  shell: "{{ item }}"
+  #  with_items:
+  #    - nmcli con mod "{{ my_conn.stdout }}" ipv6.ignore-auto-dns yes
+  #    - nmcli con mod "{{ my_conn.stdout }}" ipv4.ignore-auto-dns yes
+  #    - nmcli con mod "{{ my_conn.stdout }}" ipv4.dns "8.8.8.8 4.4.4.4"
+  #    - nmcli con down "{{ my_conn.stdout }}" && nmcli con up "{{ my_conn.stdout }}"
+  #  when: ansible_os_family == "RedHat"
+  #
+  #- name: "Make DNS Updat to ifcfg.{{ my_conn.stdout }}  File"
+  #  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-{{ ansible_default_ipv4.interface }}
+  #              state=present
+  #              backrefs=yes
+  #              regexp="{{item.regex}}"
+  #              line="{{item.line}}"
+  #  with_items:
+  #    - { regex: '^.*DNS1.*$', line: 'DNS1=8.8.8.8' }
+  #    - { regex: '^.*DNS2.*$', line: 'DNS2=8.8.4.4' }
+  #  when: ansible_os_family == "RedHat"
+  #
+- name: Add entires to /etc/hosts
+  become: yes
+  template:
+    src: "hosts.j2"
+    dest: "/etc/hosts"
+    owner: root
+    group: root
+  when: ansible_os_family == "RedHat"    

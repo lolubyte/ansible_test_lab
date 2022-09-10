@@ -1,0 +1,13 @@
+---
+
+- name: Install git
+  become: yes
+  yum:
+    name: git 
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install git on Ubuntu Server
+  apt: name=git state=present
+  become: yes
+  when: ansible_os_family == "Debian"

@@ -1,0 +1,12 @@
+---
+
+- name: 'Configure httpd'
+  become: yes
+  template:
+    src: 'httpd.conf.rhel7.j2'
+    dest: "{{ httpd_conf_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: "restart apache"
+  when: ansible_os_family == "RedHat"

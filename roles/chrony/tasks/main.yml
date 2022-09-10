@@ -1,0 +1,4 @@
+---
+- include: "roles/{{ role_name }}/tasks/install-{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version }}.yml"
+- include: "roles/{{ role_name }}/tasks/configure.yml"
+- include: "roles/{{ role_name }}/tasks/service.yml"

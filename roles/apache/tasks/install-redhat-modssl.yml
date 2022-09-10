@@ -1,0 +1,10 @@
+---
+
+- name: Install apache mod_ssl
+  become: yes
+  yum:
+    name: mod_ssl
+    state: latest
+  notify: "restart apache"
+
+

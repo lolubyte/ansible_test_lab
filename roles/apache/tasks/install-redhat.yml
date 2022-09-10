@@ -1,0 +1,22 @@
+---
+
+- name: Install Apache
+  become: yes
+  yum:
+    name: httpd
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Include Apache mod_ssl
+  import_tasks: install-redhat-modssl.yml
+  when: 
+    - apache_modssl
+    - ansible_os_family == "RedHat"   
+
+
+- name: Include Apache mod_mellon
+  import_tasks: install-redhat-modmellon.yml
+  when: 
+    - apache_modmellon
+    - ansible_os_family == "RedHat"
+

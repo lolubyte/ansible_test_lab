@@ -1,0 +1,60 @@
+---
+
+- name: Modify and Comment out Several Lines in /etc/httpd/conf/httpd.conf
+  become: yes
+  replace:
+    path: "/etc/httpd/conf/httpd.conf"
+    regexp: "{{ item.regex }}"
+    replace: "{{ item.replace }}"
+    backup: yes
+  with_items:
+    - { regex: '^(LoadModule.*)$', replace: '#\1' }
+    - { regex: '^(DocumentRoot.*)$', replace: '#\1' }
+    - { regex: '^(DirectoryIndex.*)$', replace: '#\1' }
+    - { regex: '^(Alias.*)$', replace: '#\1' }
+    - { regex: '^(ScriptAlias.*)$', replace: '#\1' }
+    - { regex: '^(IndexOptions.*)$', replace: '#\1' }
+    - { regex: '^(AddIconByEncoding.*)$', replace: '#\1' }
+    - { regex: '^(AddIconByType.*)$', replace: '#\1' }
+    - { regex: '^(AddIcon.*)$', replace: '#\1' }
+    - { regex: '^(DefaultIcon.*)$', replace: '#\1' }
+    - { regex: '^(ReadmeName.*)$', replace: '#\1' }
+    - { regex: '^(HeaderName.*)$', replace: '#\1' }
+    - { regex: '^(IndexIgnore.*)$', replace: '#\1' }
+    - { regex: '^(ServerAdmin.*)$', replace: 'ServerAdmin info@lolubyte.com' }
+    - { regex: '^(ServerTokens.*)$', replace: 'ServerTokens Prod' }
+    - { regex: '^(ServerSignature.*)$', replace: 'ServerSignature Off' }
+  notify: "restart apache"
+
+- name: Comment out Several More Lines in /etc/httpd/conf/httpd.conf (Continued...)
+  become: yes
+  replace:
+    path: "/etc/httpd/conf/httpd.conf"
+    regexp: '^(.*)$'
+    replace: '#\1'
+    after: "{{ item.after }}"
+    before: "{{ item.before }}"
+    backup: yes
+  with_items:
+    - { after: '^<Directory .*$', before: '</Directory>' }
+    - { after: '^<Directory .*$', before: '</Directory>' }
+    - { after: '^<Directory .*$', before: '</Directory>' }
+    - { after: '^<Directory .*$', before: '</Directory>' }
+    - { after: '^<Directory .*$', before: '</Directory>' }
+    - { after: '^<IfModule mod_userdir.c>.*$', before: '</IfModule>' }
+    - { after: '^<IfModule mod_negotiation.c>.*$', before: '</IfModule>' }
+  notify: "restart apache"
+
+- name: Comment out Several Lines in /etc/httpd/conf/httpd.conf (Continued...)
+  become: yes
+  replace:
+    path: "/etc/httpd/conf/httpd.conf"
+    regexp: "{{ item.regex }}"
+    replace: "{{ item.replace }}"
+    backup: yes
+  with_items:
+    - { regex: '^(<Directory .*)$', replace: '#\1' }
+    - { regex: '^(</Directory>.*)$', replace: '#\1' }
+    - { regex: '^(<IfModule mod_userdir.c>.*)$', replace: '#\1' }
+    - { regex: '^(<IfModule mod_negotiation.c>.*)$', replace: '#\1' }
+  notify: "restart apache"

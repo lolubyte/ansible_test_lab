@@ -1,0 +1,10 @@
+nagios_client  ansible_host=10.1.10.80
+sso1 ansible_host=10.1.10.31
+jenkins-server ansible_host=10.1.10.125
+#sso3 ansible_host=10.1.10.109
+
+[dbservers]
+sso1
+
+[webservers]
+jenkins-server

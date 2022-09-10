@@ -1,0 +1,10 @@
+---
+
+#- name: Display all variables/facts known for a host
+#  debug:
+#    var: hostvars[inventory_hostname]
+#    verbosity: 4
+#  ignore_errors: yes   
+#- include: "roles/{{ role_name }}/tasks/install-{{ ansible_os_family | lower }}.yml"
+- include: "roles/{{ role_name }}/tasks/install-redhat.yml"
+- include: "roles/{{ role_name }}/tasks/configure.yml"

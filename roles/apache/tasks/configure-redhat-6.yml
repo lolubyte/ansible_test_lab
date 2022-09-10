@@ -1,0 +1,11 @@
+---
+
+- name: Copy httpd.conf to /etc/httpd/conf/httpd.conf
+  become: yes
+  template: 
+    src: "httpd.conf.rhel6.j2"
+    dest: "/etc/httpd/conf/httpd.conf"
+    mode: 0600
+    owner: root
+    group: root
+  notify: "restart apache"

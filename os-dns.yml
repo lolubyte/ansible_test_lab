@@ -1,0 +1,29 @@
+---
+- name: RHEL8 Playbook
+  hosts: all
+  vars_prompt:
+
+#    - name: "shark_user"
+#      prompt: "Enter your  shark username"
+#      private: no
+#
+#    - name: "shark_token"
+#      prompt: "Enter your shark login token"
+#      private: yes
+#
+
+#    - name: "ansible_http_shark_username"
+#      prompt: "Enter You shark UserID"
+#      private: no
+#
+#    - name: "ansible_http_shark_password"
+#      prompt: "Enter your shark login password"
+#      private: yes
+#
+   
+  roles:
+    - { role: dns, 		tags: [ 'os', 'dns' ]	 } 
+    - { role: users, 		tags: [ 'os', 'users' ]	 }
+    - { role: apache, 		tags: [ 'os', 'apache' ] }
+    - { role: chrony, 		tags: [ 'os', 'chrony' ] }
+    - { role: git, 		tags: [ 'os', 'git' ]	 }

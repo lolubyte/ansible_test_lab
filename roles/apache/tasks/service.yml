@@ -1,0 +1,7 @@
+---
+
+- name: Enable httpd to start at boot
+  service:
+    name: httpd
+    enabled: yes
+  when: ansible_os_family == "RedHat"   

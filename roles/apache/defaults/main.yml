@@ -1,0 +1,43 @@
+---
+
+apache_modssl: true
+apache_modmellon: false
+
+httpd_conf_file: /etc/httpd/conf/httpd.conf
+httpd_ServerAdmin: "info@lolubyte.com"
+httpd_DocumentRoot:
+httpd_Listen:
+httpd_Directory:
+httpd_IfModule:
+  - name: log_config_module
+    pairs:
+      - key: 'LogFormat'
+        value: '"%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined'
+      - key: 'LogFormat'
+        value: '"%h %l %u %t \"%r\" %>s %b" common'
+      - key: 'CustomLog'
+        value: '"logs/access_log" combined'
+    modules:
+      - name: logio_module
+        pairs:
+          - key: 'LogFormat'
+            value: '"%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio'
+  - name: mime_module
+    pairs:
+      - key: 'TypesConfig'
+        value: '/etc/mime.types'
+      - key: 'AddType'
+        value: 'application/x-compress .Z'
+      - key: 'AddType'
+        value: 'application/x-gzip .gz .tgz'
+      - key: 'AddType'
+        value: 'text/html .shtml'
+      - key: 'AddOutputFilter'
+        value: 'INCLUDES .shtml'
+  - name: mime_magic_module
+    pairs:
+      - key: 'MIMEMagicFile'
+        value:  'conf/magic'
+
+httpd_ssl_Listen: ""
+httpd_ssl_VirtualHost: ""

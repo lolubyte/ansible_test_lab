@@ -1,0 +1,6 @@
+---
+
+chrony_conf_file: '/etc/chrony.conf'
+chrony_config_server:
+ - time-b-g.nist.gov 
+ - time3.google.com

@@ -1,0 +1,97 @@
+# {{ ansible_managed }}
+
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+
+{% if chrony_config_server is defined %}
+ {% for server in chrony_config_server %}
+server {{ server }} iburst
+ {% endfor %}
+{% else %}
+server 0.rhel.pool.ntp.org iburst
+server 1.rhel.pool.ntp.org iburst
+server 2.rhel.pool.ntp.org iburst
+server 3.rhel.pool.ntp.org iburst
+{% endif %}
+
+# Record the rate at which the system clock gains/losses time.
+
+{% if chrony_driftfile is defined %}
+driftfile {{ chrony_driftfile }}
+{% else %}
+driftfile /var/lib/chrony/drift
+{% endif %}
+
+# Allow the system clock to be stepped in the first three updates
+# if its offset is larger than 1 second.
+
+{% if chrony_makestep is defined %}
+makestep {{ chrony_makestep }}
+{% else %}
+makestep 1.0 3
+{% endif %}
+
+# Enable kernel synchronization of the real-time clock (RTC).
+
+{% if chrony_rtcsync is defined %}
+{{ chrony_rtcsync }}
+{% else %}
+rtcsync
+{% endif %}
+
+# Enable hardware timestamping on all interfaces that support it.
+
+{% if chrony_hwtimestamp is defined %}
+hwtimestamp {{ chrony_hwtimestamp }}
+{% else %}
+#hwtimestamp *
+{% endif %}
+
+# Increase the minimum number of selectable sources required to adjust
+# the system clock.
+
+{% if chrony_minsources is defined %}
+minsources {{ chrony_minsources }}
+{% else %}
+#minsources 2
+{% endif %}
+
+# Allow NTP client access from local network.
+
+{% if chrony_allow is defined %}
+allow {{ chrony_allow }}
+{% else %}
+#allow 192.168.0.0/16
+{% endif %}
+
+# Serve time even if not synchronized to a time source.
+
+{% if chrony_local_stratum is defined %}
+local stratum {{ chrony_local_stratum }}
+{% else %}
+#local stratum 10
+{% endif %}
+
+# Specify file containing keys for NTP authentication.
+
+{% if chrony_keyfile is defined %}
+keyfile {{ chrony_keyfile }}
+{% else %}
+#keyfile /etc/chrony.keys
+{% endif %}
+
+# Specify directory for log files.
+
+{% if chrony_logdir is defined %}
+logdir {{ chrony_logdir }}
+{% else %}
+logdir /var/log/chrony
+{% endif %}
+
+# Select which information is logged.
+
+{% if chrony_log is defined %}
+log {{ chrony_log }}
+{% else %}
+#log measurements statistics tracking
+{% endif %}
