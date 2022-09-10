@@ -5,20 +5,20 @@
     - username: daniel
     - my_id: Dan123
   vars_prompt:
-    - name: "shark_user"
-      prompt: "Enter your  shark username"
+    - name: "lbitc_user"
+      prompt: "Enter your  lbitc username"
       private: no
 
-    - name: "shark_token"
-      prompt: "Enter your shark login token"
+    - name: "lbitc_token"
+      prompt: "Enter your lbitc login token"
       private: yes
 
-#    - name: "ansible_http_shark_username"
-#      prompt: "Enter You shark UserID"
+#    - name: "ansible_http_lbitc_username"
+#      prompt: "Enter You lbitc UserID"
 #      private: no
 #
-#    - name: "ansible_http_shark_password"
-#      prompt: "Enter your shark login password"
+#    - name: "ansible_http_lbitc_password"
+#      prompt: "Enter your lbitc login password"
 #      private: yes
 #
    
